@@ -8,6 +8,15 @@ struct nlattr;
 struct nlmsghdr;
 struct nftnl_obj;
 
+struct nftnl_meter_band {
+	uint64_t	pkts;
+	uint64_t	bytes;
+	uint64_t	unit;
+	uint64_t	rate;
+	uint64_t	burst;
+	uint32_t	type;		/* Drop or Dscp */
+};
+
 struct nftnl_obj {
 	struct list_head	head;
 	struct obj_ops		*ops;
@@ -35,6 +44,13 @@ struct nftnl_obj {
 			uint8_t		l4proto;
 			char		name[16];
 		} ct_helper;
+		struct nftnl_obj_meter {
+			uint64_t	pkts;
+			uint64_t	bytes;
+			uint32_t	flags;
+			int		n_bands;
+			struct nftnl_meter_band *bands;
+		} meter;
 	} data;
 };
 
@@ -55,6 +71,7 @@ struct obj_ops {
 extern struct obj_ops obj_ops_counter;
 extern struct obj_ops obj_ops_quota;
 extern struct obj_ops obj_ops_ct_helper;
+extern struct obj_ops obj_ops_meter;
 
 #define nftnl_obj_data(obj) (void *)&obj->data
 

@@ -43,6 +43,8 @@ int nftnl_buf_expr(struct nftnl_buf *b, int type, uint32_t flags,
 		   struct nftnl_expr *expr);
 
 #define BASE			"base"
+#define BAND			"band"
+#define BANDS			"bands"
 #define BYTES			"bytes"
 #define BURST			"burst"
 #define CHAIN			"chain"

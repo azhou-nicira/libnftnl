@@ -35,6 +35,22 @@ enum {
 };
 
 enum {
+	NFTNL_OBJ_METER_BYTES = NFTNL_OBJ_BASE,
+	NFTNL_OBJ_METER_PACKETS,
+	NFTNL_OBJ_METER_FLAGS,
+	NFTNL_OBJ_METER_BANDS,
+};
+
+enum {
+	NFTNL_METER_BAND_BYTES,
+	NFTNL_METER_BAND_PACKETS,
+	NFTNL_METER_BAND_RATE,
+	NFTNL_METER_BAND_UNIT,
+	NFTNL_METER_BAND_BURST,
+	NFTNL_METER_BAND_TYPE,
+};
+
+enum {
 	NFTNL_OBJ_CT_HELPER_NAME = NFTNL_OBJ_BASE,
 	NFTNL_OBJ_CT_HELPER_L3PROTO,
 	NFTNL_OBJ_CT_HELPER_L4PROTO,
@@ -91,6 +107,17 @@ struct nftnl_obj_list_iter;
 struct nftnl_obj_list_iter *nftnl_obj_list_iter_create(struct nftnl_obj_list *l);
 struct nftnl_obj *nftnl_obj_list_iter_next(struct nftnl_obj_list_iter *iter);
 void nftnl_obj_list_iter_destroy(struct nftnl_obj_list_iter *iter);
+
+struct nftnl_meter_band;
+struct nftnl_meter_band *nftnl_meter_bands_alloc(int n_bands);
+void nftnl_meter_band_set_u32(struct nftnl_meter_band *bands, int idx,
+			      uint16_t attr, uint32_t val);
+void nftnl_meter_band_set_u64(struct nftnl_meter_band *bands, int idx,
+			      uint16_t attr, uint64_t val);
+uint32_t nftnl_meter_band_get_u32(struct nftnl_meter_band *band, int idx,
+				  uint16_t attr);
+uint64_t nftnl_meter_band_get_u64(struct nftnl_meter_band *band, int idx,
+				  uint16_t attr);
 
 #ifdef __cplusplusg
 } /* extern "C" */

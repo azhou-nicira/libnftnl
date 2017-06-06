@@ -29,6 +29,13 @@ global:
   nftnl_table_list_iter_next;
   nftnl_table_list_iter_destroy;
 
+
+  nftnl_meter_bands_alloc;
+  nftnl_meter_band_set_u64;
+  nftnl_meter_band_set_u32;
+  nftnl_meter_band_get_u64;
+  nftnl_meter_band_get_u32;
+
   nftnl_chain_alloc;
   nftnl_chain_free;
   nftnl_chain_is_set;
@@ -288,6 +295,8 @@ global:
   nftnl_obj_get_u32;
   nftnl_obj_get_str;
   nftnl_obj_get_u64;
+  nftnl_obj_set_data;
+  nftnl_obj_get_data;
   nftnl_obj_parse;
   nftnl_obj_parse_file;
   nftnl_obj_snprintf;
